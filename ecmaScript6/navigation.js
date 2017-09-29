@@ -1,8 +1,4 @@
-import js from './js-commons';
-
-export default defineNavigation;
-
-function defineNavigation(store, views) {
+(function (js, store, views) {
 
     var loadMinimumTime = 500;
     var previousPage;
@@ -54,7 +50,8 @@ function defineNavigation(store, views) {
         });
     };
 
+    window.Navigate = navigate;
+
     navigate(views[0].htmlNodeId);
 
-    return navigate;
-}
+})(window.JsCommons, window.Store, window.Views || []);

@@ -1,6 +1,4 @@
-export default createStore;
-
-function createStore(views, enableTimeTravel) {
+(function (views) {
 
     var reducers = views.reduce((reduced, view) => {
         reduced[view.name] = view.reducer;
@@ -29,16 +27,9 @@ function createStore(views, enableTimeTravel) {
         }
     };
 
-    var store;
-    if (enableTimeTravel) {
-        var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || Redux.compose;
-        store = Redux.createStore(Redux.combineReducers(reducers), composeEnhancers(
-            Redux.applyMiddleware(...[thunk])
-        ));
-    }
-    else {
-        store = Redux.createStore(Redux.combineReducers(reducers), Redux.applyMiddleware(thunk));    
-    }    
+    //var store = Redux.createStore(Redux.combineReducers(reducers), Redux.applyMiddleware(thunk));
+    // Use this store declaration for Time Travel debug through DevTools Redux Extension
+    var store = createTimeTravelStore(Redux.combineReducers(reducers), [thunk]);
 
     function renderLoader(state) {
         if (state.loading) {
@@ -62,5 +53,6 @@ function createStore(views, enableTimeTravel) {
     .map(view => view.actionBinders)
     .forEach(actionBinders => actionBinders(store));
 
-    return store;
-}
+    window.Store = store;
+
+})(window.Views || []);
