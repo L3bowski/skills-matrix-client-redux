@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "babel ecmaScript6 --out-dir app/js"
+    "build": "babel ecmaScript6 --out-dir public/js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
