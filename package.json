@@ -1,6 +1,16 @@
 {
+  "name": "skills-matrix-client-redux",
+  "version": "1.0.0",
+  "description": "Skills matrix web application client implemented with jQuery and Redux",
+  "main": "index.js",
+  "author": "Carles Capellas <capellas.carles@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "build": "babel ecmaScript6 --out-dir public/js"
+    "build": "babel ecmaScript6 --out-dir public/js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
